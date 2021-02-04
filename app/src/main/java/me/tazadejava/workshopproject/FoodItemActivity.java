@@ -22,6 +22,7 @@ public class FoodItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_item);
 
+        // getting the id, which is passed from when we started this activity
         String id = getIntent().getStringExtra("id");
 
         ImageView image = findViewById(R.id.image);

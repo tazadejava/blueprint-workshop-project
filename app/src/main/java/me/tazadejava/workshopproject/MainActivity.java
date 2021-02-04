@@ -25,11 +25,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // declaring a RecyclerView and initializing its Adapter and LayoutManager
         RecyclerView foodList = findViewById(R.id.foodList);
+        FoodListAdapter adapter = new FoodListAdapter(this);
         foodList.setLayoutManager(new LinearLayoutManager(this));
-        FoodListAdapter adapter;
-        foodList.setAdapter(adapter = new FoodListAdapter(this));
+        foodList.setAdapter(adapter);
 
+        // declaring the randomize Button and its action
         Button randomizeButton = findViewById(R.id.button);
         randomizeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TextView searchResultsCount = findViewById(R.id.searchResultsCount);
+        // declaring the search EditText and result count TextView, and the search action
         EditText search = findViewById(R.id.search);
-
+        TextView searchResultsCount = findViewById(R.id.searchResultsCount);
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -59,19 +61,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // declaring the sort by Spinner and its Adapter
         Spinner sortBySpinner = findViewById(R.id.sortBySpinner);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
         sortBySpinner.setAdapter(spinnerAdapter);
 
+        // populating the spinnerAdapter
         List<String> categories = adapter.getCategories();
         Collections.sort(categories);
         spinnerAdapter.add("All");
         spinnerAdapter.addAll(categories);
 
+        // setting the action of the Spinner
         sortBySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0) {
+                if (position == 0) {
                     adapter.sortItemsByKey("");
                 } else {
                     adapter.sortItemsByKey(spinnerAdapter.getItem(position));
