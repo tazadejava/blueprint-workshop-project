@@ -210,7 +210,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         }
 
         //don't sort if we are already sorting by key
-        if (key == null) {
+        if (key.isEmpty()) {
             Collections.sort(result, new Comparator<String>() {
                 @Override
                 public int compare(String o1, String o2) {
