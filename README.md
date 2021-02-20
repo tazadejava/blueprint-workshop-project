@@ -1,6 +1,6 @@
 # Blueprint 2021 Workshop Project
 
-Completed up to session 1. Starter code pack for session 2.
+Completed up to session 2. Starter code pack for session 3.
 
 This example project uses the Pomological Watercolor Collection:
 

@@ -2,6 +2,8 @@ package org.hackmit.workshopproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,6 +59,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        myCustomEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                myText2.setText(myCustomEditText.getText().toString());
+            }
+        });
+
         Button randomizeEntriesButton = findViewById(R.id.randomizeEntriesButton);
         randomizeEntriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,17 +118,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Picasso.get().load("file:///android_asset/Datapack/images/" + id + ".jpg").fit().centerInside().into(imageView);
-
-        //create click listener to go to separate activity
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent showFoodItemIntent = new Intent(MainActivity.this, FoodItemActivity.class);
-                showFoodItemIntent.putExtra("id", id);
-                showFoodItemIntent.putExtra("desc", textView.getText().toString());
-                startActivity(showFoodItemIntent);
-            }
-        });
     }
 }
